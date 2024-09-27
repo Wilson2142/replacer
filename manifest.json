@@ -4,12 +4,22 @@
   "version": "1.0",
   "manifest_version": 3,
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "css/style.css"
+      ],
+      "js": [
+        "ncageImages.js",
+        "imageReplacer.js"
+      ],
+      "run_at": "document_end"
     }
   ],
   "action": {
@@ -17,5 +27,9 @@
   },
   "icons": {
     "128": "icons/akos.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   }
 }
