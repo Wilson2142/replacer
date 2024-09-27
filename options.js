@@ -3,8 +3,6 @@ function saveImageOptions() {
     var enableImageReplacement = document.getElementById('enableImageReplacement').checked;
     // retrieve the replacement percentage and convert it into a probability
     var imgReplaceProbability = document.getElementById('imgReplaceProb').value / 100;
-    var imgIncrementValue = document.getElementById('incrementValue').value / 100;
-    var imgIncrementInterveral = document.getElementById('incrementInterval').value;
 
     var imgLibOption = document.getElementById('imageLibrary').value;
     let imgLib = [];
@@ -23,9 +21,6 @@ function saveImageOptions() {
                 "imgReplaceProb": imgReplaceProbability,
                 "imgLibraryName": imgLibOption,
                 "imgLibrary": imgLib,
-                "incrementValue": imgIncrementValue,
-                "incrementInterval": imgIncrementInterveral,
-                "lastUpdate": new Date().getTime()
             }
         }
     }, function() {
@@ -46,8 +41,6 @@ function restoreOptions() {
         replacementRate = data.settings.imageReplacement.imgReplaceProb;
         // round to 4 decimal places and drop the extra zeros at the end
         document.getElementById("imgReplaceProb").value = +(replacementRate * 100).toFixed(4);
-        document.getElementById("incrementValue").value = data.settings.imageReplacement.incrementValue * 100;
-        document.getElementById("incrementInterval").value = data.settings.imageReplacement.incrementInterval;
     });
 }
 
@@ -69,21 +62,21 @@ function loadXML(callback) {
     xhr.send(null);
 }
 
-// Function to get a random word from the XML
-function getRandomWordFromXML(xml) {
-    const words = xml.getElementsByTagName("Word");
-    const randomIndex = Math.floor(Math.random() * words.length);
-    return words[randomIndex].textContent;
-}
-
-// Function to update the h1 element
-function updateHeading() {
-    loadXML(function (xml) {
-        const randomWord = getRandomWordFromXML(xml);
-        const heading = document.querySelector('h1');
-        heading.textContent = `Szia te ${randomWord}`;
-    });
-}
-
-// Call the function to update the heading
-updateHeading();
+// // Function to get a random word from the XML
+// function getRandomWordFromXML(xml) {
+//     const words = xml.getElementsByTagName("Word");
+//     const randomIndex = Math.floor(Math.random() * words.length);
+//     return words[randomIndex].textContent;
+// }
+//
+// // Function to update the h1 element
+// function updateHeading() {
+//     loadXML(function (xml) {
+//         const randomWord = getRandomWordFromXML(xml);
+//         const heading = document.querySelector('h1');
+//         heading.textContent = `Szia te ${randomWord}`;
+//     });
+// }
+//
+// // Call the function to update the heading
+// updateHeading();
